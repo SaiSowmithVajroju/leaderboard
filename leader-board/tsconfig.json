@@ -1,0 +1,48 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "paths": {
+      "@app-core/*": ["src/app/modules/core/*"],
+      "@app-shared/*": ["src/app/modules/shared/*"],
+      "@app-services/*": ["src/app/services/*"],
+      "@app-models/*": ["src/app/models/*"],
+      "@app-constants/*": ["src/app/constants/*"],
+      "@app-modules/*": ["src/app/modules/*"],
+      "@app-state/*": ["src/app/state/*"],
+      "@app-assets/*":["src/assets/*"],
+      "@app-feature/*": ["src/app/modules/feature/cost-file-management/containers/*"],
+      "@app-transformer/*": ["src/app/modules/feature/transformer-management/*"],
+      "@app-tran-panel/*": ["src/app/modules/feature/transformer-management/components/*"],
+      "@app-tran-container/*": ["src/app/modules/feature/transformer-management/containers/*"],
+
+
+
+
+    },
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

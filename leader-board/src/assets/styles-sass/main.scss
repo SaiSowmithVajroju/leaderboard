@@ -1,0 +1,1015 @@
+@import './_colors.scss';
+@import './_variables.scss';
+@import './_mixins.scss';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+/* Project based color definitions */
+@include colors($white,
+    'white');
+@include colors($black,
+    'black');
+@include colors($red,
+    'red');
+@include colors($green,
+    'green');
+@include colors($yellow,
+    'yellow');
+@include colors($cyan,
+    'cyan');
+@include colors($blue,
+    'blue');
+@include colors($blue2,
+    'blue2');
+@include colors($blue3,
+    'blue3');
+@include colors($blue4,
+    'blue4');  
+@include colors($dark-blue,
+    'dark-blue');
+@include colors($grey,
+    'grey');
+@include colors($grey2,
+    'grey2');
+@include colors($pink,
+    'pink');
+@include colors($silver,
+    'silver');
+@include colors($yellow2,
+    'yellow2');
+@include colors($orange,
+    'orange'); 
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,700&display=swap');
+
+@media print {
+    body, .mat-select-value, input, .color-pink { font-size: 13pt!important }
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.ml-auto {
+    margin-left: auto !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.height-36 {
+    height: 36px !important;
+}
+
+.tables-container {
+    height: calc(100vh - 190px);
+    position: relative;
+
+    .mat-table {
+        height: 100%;
+        overflow: auto;
+    }
+}
+
+.cost-edit-table-container {
+    height: calc(100vh - 165px);
+    position: relative;
+
+    .mat-table {
+        height: 100%;
+        overflow: auto;
+    }
+}
+
+.default-cost-table,.content-readable {
+    .mat-form-field-flex {
+        pointer-events:none !important;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+// --------Responsive styles start here------------
+
+@page {
+    size: auto;
+    margin: 0;
+}
+
+.panel1-left-col{
+    width: calc(45% - 15px);
+
+    @media  (max-width: 1366px) {
+        width: calc(45% - 15px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(40% - 15px);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+.panel1-right-col{
+    width: calc(55% - 15px);
+    .print-ele-box {
+        width: 30%;
+    }
+    .reactors-box {
+        width: 50%;
+    }
+
+    @media  (max-width: 1366px) {
+        width: calc(55% - 15px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(60% - 15px);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+        .print-ele-box {
+            width: calc(40%);
+        }
+        .reactors-box {
+            width: calc(60% - 5px);
+        }
+    }
+}
+
+.panel2-left-col {
+    width: calc(63% - 15px);
+
+    @media  (max-width: 1366px) {
+        width: calc(63% - 15px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(63% - 15px);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.panel2-right-col {
+    width: calc(33% - 20px);
+
+    @media  (max-width: 1366px) {
+        width: calc(33% - 20px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(33% - 20px);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.panel3-left-col {
+    width: calc(63% - 15px);
+
+    @media  (max-width: 1366px) {
+        width: calc(63% - 15px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(63% - 15px);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.panel4-top-box {
+    width: calc(100%);
+
+    @media  (max-width: 1366px) {
+        width: calc(100%);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(100%);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.panel4-middle-box {
+    width: calc(100%);
+
+    @media  (max-width: 1366px) {
+        width: calc(100%);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(100%);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.panel4-bottom-box {
+    width: calc(60%);
+
+    @media  (max-width: 1366px) {
+        width: calc(60%);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(60%);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+.panel5-top-box {
+    width: calc(50%);
+
+    @media  (max-width: 1366px) {
+        width: calc(50%);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(50%);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.panel5-bottom-box {
+    width: calc(55%);
+
+    @media  (max-width: 1366px) {
+        width: calc(55%);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(55%);
+        font-size: 0.6em;
+    }
+}
+
+.output-box1 {
+    // width: 37%;
+
+    @media  (max-width: 1366px) {
+        // width: calc(37%);
+    }
+
+    @media  (max-width: 768px) {
+        // width: calc(55%);
+        font-size: 0.8em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+.output-box2 {
+    // width: 37%;
+
+    @media  (max-width: 1366px) {
+        // width: calc(37%);
+    }
+
+    @media  (max-width: 768px) {
+        // width: calc(55%);
+        font-size: 0.8em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+.output-box3 {
+    // width: 37%;
+
+    @media  (max-width: 1366px) {
+        // width: calc(37%);
+    }
+
+    @media  (max-width: 768px) {
+        // width: calc(55%);
+        font-size: 0.8em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+.output-box4 {
+    // width: 37%;
+
+    @media  (max-width: 1366px) {
+        // width: calc(37%);
+    }
+
+    @media  (max-width: 768px) {
+        // width: calc(55%);
+        font-size: 0.8em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+.output-box5 {
+    // width: 37%;
+
+    @media  (max-width: 1366px) {
+        // width: calc(37%);
+    }
+
+    @media  (max-width: 768px) {
+        // width: calc(55%);
+        font-size: 0.8em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+.output-box6 {
+    width: calc(40% - 15px);
+
+    @media  (max-width: 1366px) {
+        width: calc(40% - 15px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(40% - 15px);
+        font-size: 0.8em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.wdes-indata-left-col {
+    width: calc(63% - 15px);
+
+    @media  (max-width: 1366px) {
+        width: calc(63% - 15px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(63% - 15px);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.wdes-indata-right-col {
+    width: calc(33% - 20px);
+
+    @media  (max-width: 1366px) {
+        width: calc(33% - 20px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(33% - 20px);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.wdes-a-left-col, .wdes-b-left-col, .wdes-c-left-col,.wdes-d-left-col, .wdes-e-left-col, .wdes-f-left-col {
+    width: calc(60% - 15px);
+
+    @media  (max-width: 1366px) {
+        width: calc(60% - 15px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(60% - 15px);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+.wdes-a-right-col, .wdes-b-right-col, .wdes-c-right-col,.wdes-d-right-col, .wdes-e-right-col, .wdes-f-right-col {
+    width: calc(40% - 15px);
+
+    @media  (max-width: 1366px) {
+        width: calc(40% - 15px);
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(40% - 15px);
+        font-size: 0.85em;
+        input, .mat-select{
+            font-size: 0.7em;
+        }
+    }
+}
+
+
+.transformer-toggle-container {
+    top: 15px;
+    right: 20px;
+    position: absolute;
+    z-index: 9;
+    width: 30%;
+    mat-button-toggle {
+        width: 90px;
+    }
+    @media  (max-width: 1366px) {
+        width: 30%;
+    }
+
+    @media (min-width: 1220px) and (max-width: 1270px) {
+        width: calc(40% - 15px);
+    }
+
+    @media (min-width: 770px) and (max-width: 930px) {
+        width: calc(40% - 15px);
+        mat-button-toggle {
+            width: 60px;
+        }
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(40% - 15px);
+        mat-button-toggle {
+            width: 60px;
+        }
+    }
+}
+
+.transformer-view-container {
+    .mat-tab-label .mat-tab-label-content {
+
+    }
+}
+// --------Responsive styles end here------------
+
+// -----------Start of mat-toggle-group styles----------
+.mat-toggle-group {
+    // width: 180px;
+    border: 1px solid #caccce;
+
+    mat-button-toggle {
+        // width: 90px;
+        height: 30px;
+        border-radius: 0;
+        font-size: 12px;
+        color: $grey2;
+        background: rgba(255, 255, 255, 0);
+
+        &:hover {
+            background: #f5faff;
+            color: #2d8ba8;
+        }
+
+        .mat-button-toggle-button,
+        .mat-button-toggle-label-content {
+            height: 30px;
+            line-height: 30px;
+        }
+    }
+
+    .mat-button-toggle-checked {
+        background-color: $blue !important;
+        color: #fff !important;
+    }
+}
+// -----------End of  mat-toggle-group styles----------
+
+// --------material Global styles start here------------
+.mat-button,
+.mat-flat-button,
+.mat-icon-button,
+.mat-raised-button,
+.mat-stroked-button {
+    line-height: 30px !important;
+}
+
+.mat-raised-button {
+    padding: 0 5px !important
+}
+
+.mat-icon {
+    height: 16px !important;
+    // width: 16px !important;
+}
+
+.material-icons {
+    font-size: 16px;
+}
+
+.mat-tooltip {
+    font-size: 13px !important;
+    background: $blue2 !important;
+    color: $black !important;
+    font-weight: 400 !important;
+    margin-top: 0px !important;
+    // opacity: 0.8;
+}
+
+// --------material Global styles end here------------
+
+// --------mat-table styles start here------------
+.mat-header-row {
+    background: $blue2;
+    border-bottom: none;
+}
+
+mat-footer-row,
+mat-header-row,
+mat-row,
+td.mat-cell,
+td.mat-footer-cell,
+th.mat-header-cell {
+    border-bottom-color: #eef1f8;
+}
+
+.mat-row {
+    min-height: 45px !important;
+}
+
+// --------mat-table styles end here------------
+
+a.active span {
+    color: $blue !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.justify-center {
+    justify-content: center !important;
+}
+
+.pull-right {
+    text-align: right !important;
+}
+
+.align-center {
+    align-items: center !important;
+}
+
+.position-relative {
+    position: relative !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+button.disabled,.mat-button[disabled], .mat-raised-button[disabled], .mat-icon.disabled, a.disabled{
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.mat-tab-disabled {
+    cursor: not-allowed !important;
+
+    .mat-tab-label-content {
+        opacity: 0.4 !important;
+    }
+}
+
+.panel1-view-container,
+.panel2-view-container,
+.wdes-indata-container,
+.panel3-view-container,
+.panel5-view-container{
+    height: calc(100% - 0px);
+    overflow: auto;
+}
+
+.panel4-view-container,
+.output-panel-container {
+    height: calc(100% - -5px);
+    overflow: auto;
+}
+
+.home-container {
+    height: calc(100%);
+    overflow: auto;
+}
+
+.home-img{
+    // background-image: url('./../images/game_bg.webp');
+    opacity: 0.9; 
+    background-size: 100% 100%;
+}
+
+.home-bottom-box{
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    bottom: 0px;
+    position: absolute;
+}
+
+.border-line{
+    border-bottom: 2px dotted #ccc;
+    margin-bottom: 15px;
+    padding-bottom: 20px !important;
+}
+
+.list-items{
+    bottom: 0 px;
+    padding-bottom: 0px;
+    padding-top: 5%;
+}
+// --------mat-form styles end here------------
+.mat-form-field-underline {
+    // background-color: $blue !important;
+}
+
+.ng-valid .mat-form-field-ripple {
+    background: $blue !important;
+}
+
+.mat-focused {
+    .mat-form-field-ripple {
+        background: $blue !important;
+    }
+    .mat-form-field-label {
+        color: $black2 !important;
+    }
+}
+
+.mat-form-field .mat-form-field-underline {
+    background: $silver !important;
+}
+
+/* Sets the underline to red if dirty and invalid */
+.mat-form-field.ng-invalid .mat-form-field-underline .mat-form-field-ripple {
+    background-color: $red !important
+}
+
+/* Sets the label to red if dirty and invalid */
+.mat-form-field.ng-invalid {
+    color: $red !important;
+}
+
+.color-yellow .mat-select-value-text {
+    color: $yellow !important;
+}
+
+.color-green .mat-select-value-text {
+    color: $green !important;
+}
+
+// .mat-focused .placeholder {
+//     color: $blue !important;
+// }
+// --------mat-form styles end here------------
+
+
+// --------mat-tab styles end here------------
+.mat-tab-label {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    min-width: 72px !important;
+    height: 40px !important;
+}
+
+.mat-ink-bar {
+    background: $blue !important;
+    width: 3.5% !important;
+    margin-left: 10px !important;
+}
+
+.mat-tab-header {
+    border: none !important;
+}
+
+.mat-tab-label {
+    opacity: 1 !important;
+
+    .mat-tab-label-content {
+        color: $black2 !important;
+    }
+}
+
+.mat-tab-label-active {
+    .mat-tab-label-content {
+        color: $blue !important;
+    }
+}
+
+.transformer-view-container {
+    height: calc(100vh - 100px);
+    width: 70%;
+
+    @media  (max-width: 1366px) {
+        width: 70% !important;
+    }
+
+    @media  (max-width: 1225px) {
+        width: calc(100% - 40px) !important
+    }
+
+    @media  (max-width: 805px) {
+        width: calc(100% - 40px) !important
+    }
+
+    @media  (max-width: 768px) {
+        width: calc(100% - 40px) !important
+    }
+
+    .mat-tab-body-wrapper {
+        height: calc(100vh - 170px);
+        padding: 5px 0;
+
+        .basic-panel-container {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+    }
+}
+
+// --------mat-tab styles end here------------
+
+// --------Start Toaster styles------------
+.toast-container .toast {
+    padding: 10px 15px 10px 15px !important;
+    min-width: 370px !important
+}
+
+.toast-close-button {
+    top: 0 !important;
+    font-size: 16px !important;
+}
+
+.toast-message {
+    font-size: 16px;
+}
+
+#toast-container>.toast-success>.toast-message::before {
+    font-weight: 900;
+    margin-right: 10px;
+    font-size: 18px;
+    vertical-align: bottom;
+}
+
+#toast-container>.toast-success {
+    background: $green;
+}
+
+#toast-container>.toast-error>.toast-message::before {
+    font-weight: 900;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#toast-container>.toast-error {
+    background: $red;
+}
+
+#toast-container>.toast-warning>.toast-message::before {
+    font-weight: 900;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#toast-container>.toast-warning {
+    background: $yellow2;
+    color: $black2 !important;
+}
+
+#toast-container>.toast-info>.toast-message::before {
+    font-weight: 900;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#toast-container>.toast-info {
+    background: $cyan;
+}
+
+#toast-container>.ngx-toastr {
+    padding: 15px 15px 15px 15px;
+}
+
+#toast-container>.run-toastr {
+    width: 500px !important;
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 15px;
+    width: 300px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: 0 0 12px #999999;
+    color: #FFFFFF;
+    pointer-events: auto !important;
+}
+
+// -------- End Toaster styles ---------------
+
+//--------- Start of spinner styles-----------
+
+.spinner-overlay {
+    position: fixed;
+    // position: relative;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .5);
+    z-index: 10000;
+
+    mat-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -25px;
+        margin-left: -25px;
+
+        circle {
+            stroke: $blue;
+        }
+    }
+
+    &.d-30 mat-spinner {
+        margin-top: -15px;
+        margin-left: -15px;
+    }
+
+    &.inside {
+        position: absolute;
+        background: rgba(252, 252, 252, .9);
+
+        &.op-2 {
+            background: rgba(252, 252, 252, .2);
+        }
+
+        mat-spinner {
+            position: absolute;
+
+            svg {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.spinner-overlay.inside {
+    top: 60px;
+
+    .mat-spinner {
+        margin-top: -26px;
+    }
+}
+
+// -----------End of spinner styles----------
+
+// -----------start of print styles----------
+@media print {
+    .pagebreak {
+        clear: both;
+        page-break-after: always;
+    }
+
+    /* invert the display (show/hide) properties of the main */
+    /* aplication component and the printing component       */
+    router-outlet {
+        display: block;
+    }
+
+    app-sidenav {
+        display: none;
+    }
+
+    @page {
+        size: portrait;
+    }
+    body {
+        width:100%;
+        height:100%;
+        zoom: 105%;
+    }
+        
+}
+
+.wdes-common-view-container {
+    height: calc(100% - -18px);
+    overflow: auto;
+}
+
+// print-layout
+#print-page {
+    width:94%;
+    padding: 15px;
+    .panel1-view-container,
+    .panel2-view-container,
+    .wdes-indata-container,
+    .panel3-view-container,
+    .panel5-view-container,
+    .panel4-view-container {
+        height: calc(100% - 0px);
+        overflow: hidden !important;
+    }
+    .mat-form-field-flex {
+        pointer-events:none !important;
+    }
+    .wdes-common-view-container {
+        height: calc(100% - -18px);
+        overflow: hidden;
+    }
+}
+
+// -----------End of print styles----------
+
+// print screen(downloaded pdf-wdes)
+.print-screen{
+    body, .mat-select-value, input, .color-pink, .color-black { font-size: 9pt!important }
+}
+// end of print screen styles
+
+// mat-icon style
+
+// .material-icons {
+//     font-family: 'Material Icons';
+//     font-weight: normal;
+//     font-style: normal;
+//     font-size: 24px;  /* Preferred icon size */
+//     display: inline-block;
+//     line-height: 1;
+//     text-transform: none;
+//     letter-spacing: normal;
+//     word-wrap: normal;
+//     white-space: nowrap;
+//     direction: ltr;
+//     color: red; 
+  
+//     /* Support for all WebKit browsers. */
+//     -webkit-font-smoothing: antialiased;
+//     /* Support for Safari and Chrome. */
+//     text-rendering: optimizeLegibility;
+  
+//     /* Support for Firefox. */
+//     -moz-osx-font-smoothing: grayscale;
+  
+//     /* Support for IE. */
+//     font-feature-settings: 'liga';
+//   }
+
+mat-icon{
+    font-family: 'Material Icons' !important;
+}

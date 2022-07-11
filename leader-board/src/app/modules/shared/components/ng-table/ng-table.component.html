@@ -1,0 +1,220 @@
+<div class="tables-container">
+    <div *ngIf="isTableLoading" class="spinner-overlay inside">
+      <!-- <mat-spinner strokeWidth="3" diameter="40" mode="indeterminate"></mat-spinner> -->
+    </div>
+    <mat-table class="full-width-table" [dataSource]="dataSource" aria-label="Elements" matSort>
+        <!-- [dataSource]="dataSource | filter: searchValue"  -->
+      <!-- ************** Transformers Dashboard **********************************-->
+  
+      <!-- Customer Name Column -->
+      <ng-container matColumnDef="customer_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">PLAYER NAME</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-dark-blue2">{{row?.customer_name}}</mat-cell>
+      </ng-container>
+  
+      <!-- Object Number Column -->
+      <ng-container matColumnDef="object_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">POINTS</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-grey">{{row?.object_id}}</mat-cell>
+      </ng-container>
+  
+      <!-- Created By Column -->
+      <ng-container matColumnDef="created_by">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">FOREIGN_POINTS</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-grey">{{row.created_by}}</mat-cell>
+      </ng-container>
+  
+      <!-- Created On Column -->
+      <ng-container matColumnDef="created_on">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">CHARGE</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-grey">
+            {{row.created_on | date:'shortDate'}} | {{row.created_on | date:'shortTime'}}
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Last Modified Date Column | date:'shortDate'}} | {{row.modified_on | date:'shortTime' date:"hh:mm" Hour 0-23 -->
+      <ng-container matColumnDef="modified_on">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">TOTAL POINTS
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-grey">{{row.modified_on | date:'shortDate'}} | {{row.modified_on | date:'shortTime'}}</mat-cell>
+      </ng-container>
+  
+      <!-- Last Modified By Column -->
+      <ng-container matColumnDef="modified_by">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">RUN_TIME
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-grey">{{row.modified_by}}</mat-cell>
+      </ng-container>
+  
+      <!-- In use Column -->
+      <ng-container matColumnDef="in_use">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue" style="max-width: 7% !important;">In Use
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="color-grey" style="max-width: 7% !important;">
+              <!-- <mat-icon matTooltip="Transformer locked" *ngIf="!archievedStatus && row?.in_use && (loggedUser !== row?.modified_by)" && (loggedUser === row?.modified_by)
+              class="font-16 color-dark-blue2">lock</mat-icon> -->
+              <span *ngIf="!archievedStatus && row?.in_use">Locked
+                  <mat-icon matTooltip="Transformer locked, do you want to unlock?" (click)="unlockTheTransformer(row)"
+                  class="font-16 color-blue cursor-pointer" style="vertical-align: middle;height:20px !important;">
+                  <!-- lock -->
+                  <img class="width-16 pr-6" style="vertical-align: bottom;" src="assets/images/icons/lock.svg" alt="">
+                </mat-icon>
+              </span>
+          </mat-cell>
+        </ng-container>
+  
+  
+  
+      <!-- Actions Column -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef class="font-14 color-dark-blue">Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-icon matTooltip="Edit" *ngIf="!archievedStatus" (click)="openPanel(row)"
+            class="font-16 color-blue cursor-pointer border-right-silver">
+            <!-- edit -->
+            <img class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/edit.png" alt="">
+          </mat-icon>
+          <mat-icon matTooltip="Clone" *ngIf="!archievedStatus" (click)="cloneTransformerObject(row)"
+            class="font-16 color-blue cursor-pointer border-right-silver pl-10">
+            <!-- file_copy -->
+            <img class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/file_copy_2.png" alt="">
+          </mat-icon>
+            <mat-icon matTooltip="Clone" *ngIf="archievedStatus" (click)="cloneTransformerArchieveObject(row)"
+            class="font-16 color-blue cursor-pointer border-right-silver pl-10">
+            <!-- file_copy -->
+            <img class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/file_copy_2.png" alt="">
+          </mat-icon>
+          <mat-icon matTooltip="Delete" *ngIf="!archievedStatus" [ngClass]="row?.in_use ? 'disabled': ''" (click)="deleteTransformerObject(row)"
+            class="font-16 color-red cursor-pointer border-right-silver pl-10">
+            <!-- delete -->
+            <img class="width-16 pr-2" style="vertical-align: bottom;" src="assets/images/icons/delete_2.svg" alt="">
+          </mat-icon>
+          <mat-icon matTooltip="unarchive" *ngIf="archievedStatus" (click)="unArchiveTransformer(row)"
+            class="font-16 color-blue cursor-pointer pl-10">
+            <!-- unarchive -->
+            <img class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/unarchive_2.png" alt="">
+          </mat-icon>
+          <mat-icon matTooltip="archive" *ngIf="!archievedStatus" [ngClass]="row?.in_use ? 'disabled': ''" (click)="archiveTransformer(row)"
+            class="font-16 color-blue pl-10 cursor-pointer border-right-silver">
+            <!-- archive -->
+            <img class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/archive_2.png" alt="">
+          </mat-icon>
+  
+  
+          <mat-icon matTooltip="Download Ord" fxHide.gt-sm="true" *ngIf="!archievedStatus" (click)="downloadOrdFile(row)"
+            class="font-16 color-blue pl-10 cursor-pointer">
+            <!-- cloud_download -->
+            <img class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/cloud_download_2.svg" alt="">
+          </mat-icon>
+  
+          <button mat-raised-button fxShow="true" fxHide.lt-md="true" matTooltip="Download Ord" *ngIf="!archievedStatus"
+            (click)="downloadOrdFile(row)" [disabled]="!row?.is_optimized" class="font-14 color-blue ml-10">
+            <mat-icon class="font-16"> 
+              <!-- cloud_download  -->
+            <img class="width-17 pr-2 pb-4 material-icons" src="assets/images/icons/cloud_download_2.svg" alt="">
+            </mat-icon> Ord
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+  
+      <!-- ************** Cost Dashboard **********************************-->
+  
+      <!-- FileId Column -->
+      <ng-container matColumnDef="cost_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">File Id</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-dark-blue2">{{row?.cost_id}}</mat-cell>
+      </ng-container>
+  
+      <!-- FileName Column -->
+      <ng-container matColumnDef="file_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">File Name</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-grey">{{row?.file_name}}</mat-cell>
+      </ng-container>
+  
+      <!-- Set Default Column -->
+      <ng-container matColumnDef="setDefault">
+        <mat-header-cell *matHeaderCellDef class="font-14 color-dark-blue">Default</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-grey">
+          <span class="color-pink font-w5" *ngIf="row?.default_file==1">Current Default</span>
+          <button class="color-blue font-13" matTooltip="Make default" mat-button (click)="setDefault(row)"
+            *ngIf="row?.default_file==0">Set Default</button>
+        </mat-cell>
+  
+      </ng-container>
+  
+      <!-- Actions Column -->
+      <ng-container matColumnDef="costAction">
+        <mat-header-cell *matHeaderCellDef class="font-14 color-dark-blue">Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-icon matTooltip="Clone" (click)="costClone(row)" class="font-16 color-grey2 cursor-pointer">
+            <!-- file_copy -->
+            <img class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/file_copy_2.png" alt="">
+          </mat-icon>
+          <mat-icon matTooltip="Edit" (click)="openCostEdit(row)"
+            class="font-16 color-blue cursor-pointer border-left-silver pl-10">
+            <!-- edit -->
+            <img class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/edit.png" alt="">
+          </mat-icon>
+          <mat-icon matTooltip="Delete" *ngIf="row?.default_file!=1" (click)="deleteCost(row)"
+            class="font-16 color-red cursor-pointer border-left-silver pl-10">
+            <!-- delete -->
+            <img class="width-16 pr-2" style="vertical-align: bottom;" src="assets/images/icons/delete_2.svg" alt="">
+          </mat-icon>
+  
+        </mat-cell>
+      </ng-container>
+  
+       <!-- ************** User List **********************************-->
+  
+      <ng-container matColumnDef="userId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">User Id</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-dark-blue2">{{row?.userId}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="emailId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">Email</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-dark-blue2">{{row?.email}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">User name</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-dark-blue2">{{row?.username}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="enable">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">Enable</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-dark-blue2">{{row?.active == 1 ? 'Enabled': 'Disabled' }}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="font-14 color-dark-blue">Role</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="color-dark-blue2">{{row?.role == 1 ? 'ADMIN' : 'USER'}}</mat-cell>
+      </ng-container>
+  
+      <!-- uses list Actions Column -->
+      <ng-container matColumnDef="userAction">
+        <mat-header-cell *matHeaderCellDef class="font-14 color-dark-blue">Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-icon matTooltip="Edit" (click)="openUserEdit(row)"
+            class="font-16 color-blue cursor-pointer pl-10">
+            <!-- edit -->
+            <img class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/edit.png" alt="">
+          </mat-icon>
+          <mat-icon [matTooltip]="row?.active ? 'Enabled': 'Disabled'" *ngIf="row?.email != email" (click)="openUserEnableOrDisable(row)" [ngClass] = "row?.active ? 'color-blue': 'color-red'"
+            class="font-16 cursor-pointer border-left-silver pl-10">
+            <!-- {{row?.active == 1 ? 'check_circle_outline': 'highlight_off'}}  -->
+            <img *ngIf="row?.active == 1" class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/check_circle_outline.svg" alt="">
+            <img *ngIf="row?.active == 0" class="width-17 pr-2" style="vertical-align: bottom;" src="assets/images/icons/highlight_off.svg" alt="">
+          </mat-icon>
+  
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <mat-paginator [pageSize]="25" [pageSizeOptions]="[10, 50, 100, 250]">
+    </mat-paginator>
+  </div>
